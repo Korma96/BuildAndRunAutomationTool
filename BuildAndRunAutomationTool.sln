@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildAndRunAutomationTool", "BuildAndRunAutomationTool\BuildAndRunAutomationTool.csproj", "{3A0071BE-92CA-4285-8AD4-E024E90B01CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A0071BE-92CA-4285-8AD4-E024E90B01CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A0071BE-92CA-4285-8AD4-E024E90B01CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A0071BE-92CA-4285-8AD4-E024E90B01CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A0071BE-92CA-4285-8AD4-E024E90B01CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3BAFE089-27A3-49D4-981E-41DCB1FA5060}
+	EndGlobalSection
+EndGlobal

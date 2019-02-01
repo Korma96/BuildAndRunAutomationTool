@@ -1,0 +1,7 @@
+C:\Projects\BuildAndRunAutomationTool\BuildAndRunAutomationTool\bin\Debug\BuildAndRunAutomationTool.exe.config
+C:\Projects\BuildAndRunAutomationTool\BuildAndRunAutomationTool\bin\Debug\BuildAndRunAutomationTool.exe
+C:\Projects\BuildAndRunAutomationTool\BuildAndRunAutomationTool\bin\Debug\BuildAndRunAutomationTool.pdb
+C:\Projects\BuildAndRunAutomationTool\BuildAndRunAutomationTool\obj\Debug\BuildAndRunAutomationTool.csproj.CoreCompileInputs.cache
+C:\Projects\BuildAndRunAutomationTool\BuildAndRunAutomationTool\obj\Debug\BuildAndRunAutomationTool.exe
+C:\Projects\BuildAndRunAutomationTool\BuildAndRunAutomationTool\obj\Debug\BuildAndRunAutomationTool.pdb
+C:\Projects\BuildAndRunAutomationTool\BuildAndRunAutomationTool\obj\Debug\BuildAndRunAutomationTool.csprojResolveAssemblyReference.cache
