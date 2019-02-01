@@ -18,28 +18,23 @@ namespace BuildAndRunAutomationTool
             {
                 Console.WriteLine();
                 Console.WriteLine("*** Choose option ***");
-                Console.WriteLine("1) Delete bins and objs");
-                Console.WriteLine("2) Build projects");
-                Console.WriteLine("3) Run projects");
-                Console.WriteLine("4) Quit");
+                Console.WriteLine("1) Rebuild projects");
+                Console.WriteLine("2) Run projects");
+                Console.WriteLine("3) Quit");
                 Console.Write(">> ");
                 string input = Console.ReadLine();
 
                 switch(input)
                 {
                     case "1":
-                        InvokeBinAndObjService();
-                        break;
-                  
-                    case "2":
                         InvokeBuildService();
                         break;
 
-                    case "3":
+                    case "2":
                         InvokeRunService();
                         break;
 
-                    case "4":
+                    case "3":
                         return;
                 }
             }
@@ -85,7 +80,8 @@ namespace BuildAndRunAutomationTool
 
         private static void InvokeRunService()
         {
-            Console.WriteLine("Run service not implemented!");
+            var service = new ProjectRunnerService();
+            service.Run();
         }
     }
 }

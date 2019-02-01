@@ -7,40 +7,46 @@ using System.Threading.Tasks;
 using BuildAndRunAutomationTool.Helper;
 using Microsoft.Build.Evaluation;
 using BuildAndRunAutomationTool.Constant;
+using System.Diagnostics;
 
 namespace BuildAndRunAutomationTool.Service
 {
     public class ProjectBuilderService
     {
-        private Result Build(string projectPath, string configuration = ProjectBuilderConstants.Debug)
+        private Result Build(string projectPath, string configuration = GlobalConstants.Debug)
         { 
             if(!File.Exists(projectPath))
             {
                 return new Result(false, "Path does not exist!");
             }
 
+            Environment.SetEnvironmentVariable("MSBUILD_EXE_PATH", @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe");
+            Environment.SetEnvironmentVariable("VSINSTALLDIR", @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE");
+            // msbuild C:\Projects\Probica\Probica.sln /t:Rebuild /p:Configuration=Release /p:Platform="any cpu"
+            // msbuild C:\Projects\Probica\Model\Model.csproj /t:Rebuild
+            //Environment.SetEnvironmentVariable("VisualStudioVersion", @"15.0");
             var project = new Project(projectPath);
             project.SetGlobalProperty("Configuration", configuration);
             bool result = project.Build();
 
             if(result)
             {
-                return new Result(project.Build(), "Build success!");
+                return new Result(result, "Build success!");
             }
             else
             {
-                return new Result(project.Build(), "Build fails!");
+                return new Result(result, "Build fails!");
             }
         }
 
         public Result Build()
         {
             ShowHeader();
-            string path = GetDirectoryPath();
+            string path = GetProjectPath();
             return Build(path);
         }
 
-        private string GetDirectoryPath()
+        private string GetProjectPath()
         {
             while (true)
             {
@@ -53,13 +59,13 @@ namespace BuildAndRunAutomationTool.Service
                     Console.WriteLine("Entered path does not existh!");
                     continue;
                 }
-
-                if(!path.EndsWith(ProjectBuilderConstants.csproj))
+                
+                if(!path.EndsWith(GlobalConstants.csproj))
                 {
                     Console.WriteLine("Entered path is not project path!");
                     continue;
                 }
-
+                
                 return path;
             }
         }
@@ -67,9 +73,9 @@ namespace BuildAndRunAutomationTool.Service
         private void ShowHeader()
         {
             Console.WriteLine();
-            Console.WriteLine("***********************");
-            Console.WriteLine("* Bin & Obj destroyer *");
-            Console.WriteLine("***********************");
+            Console.WriteLine("*******************");
+            Console.WriteLine("* Project Builder *");
+            Console.WriteLine("*******************");
         }
     }
 }

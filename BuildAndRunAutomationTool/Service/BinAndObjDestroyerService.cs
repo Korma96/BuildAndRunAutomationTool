@@ -35,13 +35,13 @@ namespace BuildAndRunAutomationTool.Service
                     dirName = dirName.ToLower();
                 }
 
-                if (dirName.Equals(BinAndObjConstants.BIN) || dirName.Equals(BinAndObjConstants.OBJ))
+                if (dirName.Equals(GlobalConstants.bin) || dirName.Equals(GlobalConstants.obj))
                 {
-                    if (dirName.Equals(BinAndObjConstants.BIN))
+                    if (dirName.Equals(GlobalConstants.bin))
                     {
                         numOfBinDirsDeleted += 1;
                     }
-                    else if (dirName.Equals(BinAndObjConstants.OBJ))
+                    else if (dirName.Equals(GlobalConstants.obj))
                     {
                         numOfObjDirsDeleted += 1;
                     }
@@ -80,14 +80,14 @@ namespace BuildAndRunAutomationTool.Service
         {
             while (true)
             {
-                Console.Write("Do you want deep or shallow deleting lvl?(D/S) >> ");
+                Console.Write("Do you want deep or shallow deleting lvl?(d/s) >> ");
                 string decision = Console.ReadLine();
 
                 switch (decision)
                 {
-                    case "S":
+                    case "s":
                         return DeletingLevel.SHALLOW;
-                    case "D":
+                    case "d":
                         return DeletingLevel.DEEP;
                     default:
                         continue;
