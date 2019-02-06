@@ -15,5 +15,6 @@ namespace BuildAndRunAutomationTool.Constant
         public const string csproj = ".csproj";
         public const string exe = ".exe";
         public const string obj = "obj";
+        public const string sln = ".sln";
     }
 }

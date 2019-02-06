@@ -1,0 +1,11 @@
+﻿Environment.SetEnvironmentVariable("MSBUILD_EXE_PATH", @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe");
+Environment.SetEnvironmentVariable("VSINSTALLDIR", @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE");
+Environment.SetEnvironmentVariable("VisualStudioVersion", @"15.0");
+
+// msbuild C:\Projects\Probica\Probica.sln /t:Rebuild /p:Configuration=Release /p:Platform="any cpu"
+// msbuild C:\Projects\Probica\Model\Model.csproj /t:Rebuild
+// msbuild C:\Projects\Probica\Probica.sln -target:Model:Rebuild
+
+var project = new Project(solutionPath);
+project.SetGlobalProperty("Configuration", configuration);
+bool result = project.Build();

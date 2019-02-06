@@ -8,61 +8,61 @@ using BuildAndRunAutomationTool.Helper;
 using Microsoft.Build.Evaluation;
 using BuildAndRunAutomationTool.Constant;
 using System.Diagnostics;
+using Microsoft.Build.Construction;
 
 namespace BuildAndRunAutomationTool.Service
 {
     public class ProjectBuilderService
     {
-        private Result Build(string projectPath, string configuration = GlobalConstants.Debug)
-        { 
-            if(!File.Exists(projectPath))
-            {
-                return new Result(false, "Path does not exist!");
-            }
+        public Result<bool> Build(string configuration = GlobalConstants.Debug)
+        {
+            string solutionPath = GetSolutionPath();
 
-            Environment.SetEnvironmentVariable("MSBUILD_EXE_PATH", @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe");
-            Environment.SetEnvironmentVariable("VSINSTALLDIR", @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE");
-            // msbuild C:\Projects\Probica\Probica.sln /t:Rebuild /p:Configuration=Release /p:Platform="any cpu"
-            // msbuild C:\Projects\Probica\Model\Model.csproj /t:Rebuild
-            //Environment.SetEnvironmentVariable("VisualStudioVersion", @"15.0");
-            var project = new Project(projectPath);
-            project.SetGlobalProperty("Configuration", configuration);
-            bool result = project.Build();
+            // read all possible project names from .sln file
+            List<string> projectNames = GetProjectNames(solutionPath);
+
+            // choose project name
+            Console.WriteLine("Enter project name >> ");
+            string projectName = Console.ReadLine();
+
+            // read from config file
+            string msbuildPath = @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe";
+            Environment.SetEnvironmentVariable("MSBUILD_EXE_PATH", msbuildPath);
+            //msbuild C:\Projects\Probica\Probica.sln -target:Model: Rebuild
+            var result = false;
 
             if(result)
             {
-                return new Result(result, "Build success!");
+                return new Result<bool>(result, true, "Build success!");
             }
             else
             {
-                return new Result(result, "Build fails!");
+                return new Result<bool>(result, false, "Build fails!");
             }
         }
 
-        public Result Build()
+        private List<string> GetProjectNames(string solutionPath)
         {
-            ShowHeader();
-            string path = GetProjectPath();
-            return Build(path);
+            return new List<string>() { "", "" };
         }
 
-        private string GetProjectPath()
+        private string GetSolutionPath()
         {
             while (true)
             {
                 Console.WriteLine();
-                Console.Write("Enter project path >> ");
+                Console.Write("Enter solution path >> ");
                 string path = Console.ReadLine();
 
                 if (!File.Exists(path))
                 {
-                    Console.WriteLine("Entered path does not existh!");
+                    Console.WriteLine("Entered path does not exist!");
                     continue;
                 }
                 
-                if(!path.EndsWith(GlobalConstants.csproj))
+                if(!path.EndsWith(GlobalConstants.sln))
                 {
-                    Console.WriteLine("Entered path is not project path!");
+                    Console.WriteLine("Entered path is not solution path!");
                     continue;
                 }
                 

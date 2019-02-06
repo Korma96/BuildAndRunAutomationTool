@@ -49,17 +49,22 @@ namespace BuildAndRunAutomationTool
                 Console.WriteLine("Number of deleted bins: " + result[0]);
                 Console.WriteLine("Number of deleted objs: " + result[1]);
 
-                if(GetPotentiallyExitKey().Equals(GlobalConstants.QuitCharacter))
+                if(ExitKeyPressed())
                 {
                     break;
                 }
             }
         }
 
-        private static string GetPotentiallyExitKey()
+        private static bool ExitKeyPressed()
         {
             Console.Write(string.Format("Press any key to continue, '{0}' to quit >> ", GlobalConstants.QuitCharacter));
-            return Console.ReadLine();
+            string input = Console.ReadLine();
+            if(input.Equals(GlobalConstants.QuitCharacter))
+            {
+                return true;
+            }
+            return false;
         }
 
         private static void InvokeBuildService()
@@ -67,10 +72,10 @@ namespace BuildAndRunAutomationTool
             var service = new ProjectBuilderService();
             while(true)
             {
-                Result result = service.Build();
+                Result<bool> result = service.Build();
                 Console.WriteLine(result.Message);
 
-                if (GetPotentiallyExitKey().Equals(GlobalConstants.QuitCharacter))
+                if (ExitKeyPressed())
                 {
                     break;
                 }
